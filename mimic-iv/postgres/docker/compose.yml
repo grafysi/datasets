@@ -1,0 +1,27 @@
+services:
+  mimiciv-full:
+    image: postgres:16.3
+    container_name: mimiciv-full-pg
+    environment:
+      - POSTGRES_PASSWORD=abcd1234
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical"
+      - "-c"
+      - "log_statement=all"
+    ports:
+      - "5432:5432"
+    volumes:
+      - mimic-iv-postgres-data:/var/lib/postgresql/data
+      - type: bind
+        source: ${MIMIC_IV_SQL_DIR}
+        target: /mimic-iv/sql
+      - type: bind
+        source: ${MIMIC_IV_DATA_DIR}
+        target: /mimic-iv/data
+
+volumes:
+  mimic-iv-postgres-data:
+    name:  mimic-iv-postgres-data
