@@ -1,1 +1,1 @@
-Contains scripts to build public databases for testing such as MIMIC, e-ICU, etc.
+Contains scripts to build public databases, e.g. MIMIC, e-ICU, for testing.
